@@ -11,6 +11,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 874b1131428946a4996506aa86db1d7d, type: 3}
   m_Name: Spring 2
   m_EditorClassIdentifier: 
-  restDist: 0.6
-  stiffness: 1.65
-  dampening: 0.93
+  restDist: 0.51
+  stiffness: 7.2
+  dampening: 0.17

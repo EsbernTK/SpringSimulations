@@ -109,5 +109,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   connections: []
   velocity: {x: 0, y: 0, z: 0}
-  mass: 3.07
+  mass: 31
   dampening: 0.99
+  LogRelativePos: 0
+  spring: {fileID: 0}

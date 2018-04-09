@@ -203,8 +203,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpringPartPrefab: {fileID: 114239529712012592, guid: c2c5c48114734f2459427a2257577b8e,
     type: 2}
-  chainLength: 10
+  chainLength: 100
   spring: {fileID: 11400000, guid: 8642c2fcf2a6dde4292a03fbfc361ffa, type: 2}
+  tempSpringStiffness: 10.36
 --- !u!4 &219812149
 Transform:
   m_ObjectHideFlags: 0

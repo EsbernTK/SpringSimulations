@@ -30,6 +30,7 @@ public class SpringPart : MonoBehaviour {
     public float mass = 1f;
     public float dampening = 0.99f;
     public bool LogRelativePos;
+    public Spring spring;
     // Use this for initialization
     void Start () {
 		
@@ -40,16 +41,48 @@ public class SpringPart : MonoBehaviour {
 		foreach(SpringConnection con in connections)
         {
             Vector3 F = Vector3.zero;
-            if(!con.inverse)
+            if (!con.inverse)
+            {
                 F = con.spring.CalculateSpringForceWithDirection(con.springConnection.transform.position - transform.position, transform.rotation * con.relativeDirection);
+            }
             else
-                F = con.spring.CalculateSpringForceWithDirection(con.springConnection.transform.position - transform.position, transform.rotation * con.relativeDirection);
+            {
+                F = con.spring.CalculateSpringForceWithDirection(con.springConnection.transform.position - transform.position, con.springConnection.transform.rotation * con.relativeDirection);
+
+            }
+            if (LogRelativePos)
+            {
+                Debug.Log(transform.rotation * con.relativeDirection);
+            }
             velocity += F * mass* Time.deltaTime;
         }
-        //velocity += Vector3.down * 0.1f * Time.deltaTime;
-        velocity *= dampening;
+        velocity += Vector3.down * 1f * Time.deltaTime;
+        velocity *= spring.dampening;
         transform.position += velocity * Time.deltaTime;
         if (LogRelativePos)
-            Debug.Log((connections[0].springConnection.transform.position - transform.position).magnitude);
+        {
+            //Debug.Log((connections[0].springConnection.transform.position - transform.position).magnitude);
+        }
 	}
+    void OnDrawGizmos()
+    {
+        foreach (SpringConnection con in connections)
+        {
+
+            if (!con.inverse)
+            {
+                
+                Gizmos.color = Color.green;
+                Gizmos.DrawLine(transform.position, transform.position + (transform.rotation * con.relativeDirection).normalized * con.spring.restDist);
+            }
+            else
+            {
+               
+                Gizmos.color = Color.red;
+                Gizmos.DrawLine(transform.position, transform.position + (con.springConnection.transform.rotation * con.relativeDirection).normalized * con.spring.restDist);
+            }
+           
+        }
+
+    }
 }

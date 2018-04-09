@@ -31,4 +31,12 @@ public class Spring : ScriptableObject {
         Vector3 diff = dir - distance;
         return -stiffness * diff; //* distance.normalized;
     }
+    public Spring copy()
+    {
+        Spring temp = new Spring();
+        temp.dampening = dampening;
+        temp.restDist = restDist;
+        temp.stiffness = stiffness;
+        return temp;
+    }
 }
